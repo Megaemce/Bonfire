@@ -1,0 +1,32 @@
+.firebone {
+    background-image: linear-gradient(
+            115deg,
+            rgb(0 0 0) 20%,
+            rgba(255, 255, 255, 0) 70%
+        ),
+        linear-gradient(245deg, rgb(0 0 0) 20%, rgba(255, 255, 255, 0) 70%);
+}
+
+.fire {
+    background-image: url(noise2.svg), url(noise2.svg),
+        linear-gradient(
+            180deg,
+            rgb(255 255 255) 5%,
+            rgb(124 124 124) 91%,
+            rgb(147 147 147) 100%
+        );
+
+    /* background-blend-mode: difference; */
+    background-blend-mode: color-dodge;
+    filter: sepia(1) contrast(6);
+    animation: sliding 30s linear infinite;
+}
+
+@keyframes sliding {
+    from {
+        background-position: 1536px 9216px, 0 7168px, 0 0;
+    }
+    to {
+        background-position: 512px 0, 1024px 0, 0 0;
+    }
+}
