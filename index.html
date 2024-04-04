@@ -5,14 +5,13 @@
         <link rel="stylesheet" type="text/css" href="fire.css" />
     </head>
     <body>
-        <div class="firebone">
-            <div class="bonebackground"></div>
+        <div class="bonefire">
+            <div class="bone_back"></div>
             <div id="fire" class="fire"></div>
-            <div class="firelimits"></div>
-            <div class="bone"></div>
-            <button id="startButton" onclick="startSound()">
-                START THE FIRE
-            </button>
+            <div class="fire_limits"></div>
+            <div class="fire_lights"></div>
+            <div class="bone_back"></div>
+            <button id="start" onclick="startSound()">START THE FIRE</button>
         </div>
 
         <audio id="fireSound" loop>
@@ -21,11 +20,11 @@
         <script>
             function startSound() {
                 const fireSound = document.getElementById("fireSound");
-                const startButton = document.getElementById("startButton");
+                const start = document.getElementById("start");
                 const fire = document.getElementById("fire");
 
                 fire.classList.add("on");
-                startButton.style.display = "none";
+                start.style.display = "none";
 
                 fireSound.play();
             }
