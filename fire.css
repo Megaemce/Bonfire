@@ -29,6 +29,24 @@
     min-height: 400px;
 }
 
+.fire.on {
+    background-image: linear-gradient(
+                180deg,
+                rgb(0 0 0) 29% /* blending top of the smog */,
+                rgb(86, 86, 86) 80% /* making the central smog gray */,
+                transparent 88% /* ignore the fire */
+            )
+            /* linear gradient for the smog */,
+        url(noiseMedium.svg), url(noiseMedium.svg), url(noiseSmall.svg),
+        url(noiseBig.svg);
+    background-blend-mode: color-burn /* smog gradient and noiseMedium */,
+        color-burn /* noiseMedium and noiseMedium */,
+        color-burn /* noiseMedium and noiseSmall */,
+        difference /* noiseSmall and noiseBig */;
+    mix-blend-mode: hard-light;
+    animation: firing 100s linear infinite;
+}
+
 .fire_limits {
     position: absolute;
     z-index: 2;
@@ -45,26 +63,6 @@
             /* limiting the hight of the fire */,
         radial-gradient(ellipse 79% 131% at 50% 25%, transparent 44%, black 53%)
             /* limiting the bottom of the fire to not go over the stones */;
-}
-
-.fire.on {
-    background-image: linear-gradient(
-                180deg,
-                rgb(0 0 0) 29% /* blending top of the smog */,
-                rgb(86, 86, 86) 80% /* making the central smog gray */,
-                transparent 88% /* ignore the fire */
-            )
-            /* linear gradient for the smog */,
-        url(noiseMedium.svg), url(noiseMedium.svg), url(noiseSmall.svg),
-        url(noiseBig.svg);
-
-    filter: sepia(1);
-    background-blend-mode: color-burn /* smog gradient and noiseMedium */,
-        color-burn /* noiseMedium and noiseMedium */,
-        color-burn /* noiseMedium and noiseSmall */,
-        difference /* noiseSmall and noiseBig */;
-    mix-blend-mode: hard-light;
-    animation: firing 100s linear infinite;
 }
 
 .fire_lights {
@@ -108,13 +106,13 @@
 @keyframes firing {
     from {
         background-position: 0 /* smog color gradient */,
-            512px 7168px /* first noise */, 1536px 9216px /* second noise */,
-            0 7168px /* third noise */, 150% 20% /*forth noise */;
+            512px 7168px /* noiseMedium */, 1536px 9216px /* noiseMedium */,
+            0 7168px /* noiseSmall */, 75% 25% /* noiseBig */;
     }
     to {
         background-position: 0 /* smog color gradient */,
-            512px 9216px /* first noise */, 512px 0 /* second noise */,
-            1024px 0 /* thirs noice */, 250% 350% /* forth noise */;
+            512px 9216px /* noiseMedium */, 512px 0 /* noiseMedium */,
+            1024px 0 /* noiseSmall */, 250% 350% /* noiseBig */;
     }
 }
 
