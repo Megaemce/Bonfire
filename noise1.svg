@@ -4,7 +4,7 @@
 			seed="53322332"
 			stitchTiles="stitch" 
 			numOctaves="1" 
-			baseFrequency="0.009" />
+			baseFrequency="0.02 0.009" />
 	</filter>
 	<rect width="512" height="512" fill="white" filter="url(#noise)" />
 </svg>
