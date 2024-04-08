@@ -13,37 +13,34 @@ body {
     width: 100vw;
     background-color: black;
 }
-.bone_back_container {
+
+.bone_back {
     position: absolute;
     z-index: 0;
+    width: 30vw;
+    height: calc(30vw / var(--aspect-ratio));
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-}
-
-.bone_back {
-    height: calc(30vw / var(--aspect-ratio));
-    width: 30vw;
 
     background-image: url(bonfire.png);
     background-position: 51% 100%;
     background-repeat: no-repeat;
     background-size: contain;
 
-    animation: flickering 4s cubic-bezier(0.5, 0, 0.06, 1.43) infinite;
-}
+    mix-blend-mode: exclusion;
 
-.fire_container {
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
+    animation: flickering 6s cubic-bezier(0.5, 0, 0.06, 1.43) infinite;
 }
 
 .fire {
-    height: calc(100vw / var(--aspect-ratio));
+    position: absolute;
+    z-index: 1;
     width: 100vw;
+    height: calc(100vw / var(--aspect-ratio));
+    bottom: 0;
 
-    mix-blend-mode: multiply;
+    mix-blend-mode: hard-light;
 }
 
 .fire.on {
@@ -54,20 +51,15 @@ body {
 
     filter: sepia(1) contrast(6);
 
-    /* animation: firing 60s linear infinite; */
-}
-
-.fire_limits_container {
-    position: absolute;
-    z-index: 2;
-    bottom: 0;
-
-    mix-blend-mode: multiply;
+    animation: firing 60s linear infinite;
 }
 
 .fire_limits {
-    height: calc(100vw / var(--aspect-ratio));
+    position: absolute;
+    z-index: 2;
     width: 100vw;
+    height: calc(100vw / var(--aspect-ratio));
+    bottom: 0;
 
     background-image: radial-gradient(
                 ellipse 21% 24% at 50% 81%,
@@ -79,17 +71,16 @@ body {
         radial-gradient(ellipse 45% 92% at 50% 77%, #a16d22 13%, black 52%);
     background-size: contain;
     background-blend-mode: soft-light;
-}
 
-.fire_lights_container {
-    position: absolute;
-    z-index: 3;
-    bottom: 0;
+    mix-blend-mode: multiply;
 }
 
 .fire_lights {
-    height: calc(100vw / var(--aspect-ratio));
+    position: absolute;
+    z-index: 3;
     width: 100vw;
+    height: calc(100vw / var(--aspect-ratio));
+    bottom: 0;
 
     background-image: radial-gradient(
             ellipse 45% 14% at 50% 94%,
@@ -112,26 +103,22 @@ body {
     filter: blur(10px) opacity(0.9);
 }
 
-.bone_front_container {
+.bone_front {
     position: absolute;
     z-index: 4;
-
+    width: 30vw;
+    height: calc(30vw / var(--aspect-ratio));
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-
-    mix-blend-mode: color-dodge;
-}
-
-.bone_front {
-    height: calc(30vw / var(--aspect-ratio));
-    width: 30vw;
 
     background-image: url(bonfire.png);
     background-position: 51% 100%;
     background-repeat: no-repeat;
     background-size: contain;
     background-blend-mode: color-burn;
+
+    mix-blend-mode: color-dodge;
 }
 
 button {
@@ -152,14 +139,10 @@ button {
 
 @keyframes firing {
     from {
-        background-position: 512px 9216px /* noiseMedium */,
-            1536px 0 /* noiseMedium */, 0 7168px /* noiseSmall */,
-            0 /* smog color gradient */;
+        background-position: 512px 9216px, 1536px 0, 0 7168px, 0;
     }
     to {
-        background-position: 512px 4216px /* noiseMedium */,
-            512px 216px /* noiseMedium */, 1024px 0 /* noiseSmall */,
-            0 /* smog color gradient */;
+        background-position: 512px 4216px, 512px 216px, 1024px 0, 0;
     }
 }
 
@@ -167,13 +150,13 @@ button {
     0% {
         filter: brightness(1);
     }
-    25% {
+    15% {
         filter: brightness(4);
     }
-    66% {
-        filter: brightness(2);
+    35% {
+        filter: brightness(7);
     }
     80% {
-        filter: brightness(5);
+        filter: brightness(3);
     }
 }
