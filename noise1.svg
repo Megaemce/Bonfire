@@ -1,10 +1,10 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="512" height="512">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="256px" height="256px">
 	<filter id="noise" x="0" y="0">
-		<feTurbulence type="turbulance" width="512" height="512" result="t" 
+		<feTurbulence type="turbulance" width="256px" height="256px" result="t" 
 			seed="53322332"
 			stitchTiles="stitch" 
 			numOctaves="1" 
 			baseFrequency="0.02 0.009" />
 	</filter>
-	<rect width="512" height="512" fill="white" filter="url(#noise)" />
+	<rect width="256px" height="256px" fill="white" filter="url(#noise)" />
 </svg>

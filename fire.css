@@ -11,7 +11,6 @@ body {
     position: relative;
     height: 100vh;
     width: 100vw;
-    background-color: black;
 }
 
 .bone_back {
@@ -30,14 +29,14 @@ body {
 
     mix-blend-mode: exclusion;
 
-    animation: flickering 6s cubic-bezier(0.5, 0, 0.06, 1.43) infinite;
+    animation: flickering 5s cubic-bezier(0.5, 0, 0.06, 1.43) infinite;
 }
 
 .fire {
     position: absolute;
     z-index: 1;
     width: 100vw;
-    height: calc(100vw / var(--aspect-ratio));
+    height: 100vh;
     bottom: 0;
 
     mix-blend-mode: hard-light;
@@ -45,20 +44,20 @@ body {
 
 .fire.on {
     background-image: url(noiseSmall.svg), url(noise1.svg), url(noise.svg),
-        linear-gradient(180deg, #000000, #a63c3cee 50%, #f9ae05d4);
+        linear-gradient(180deg, #000000, #656565d1 50%, #ffb100);
+    background-size: 50vmin 50vmin, 50vmin 50vmin, 50vmin 50vmin, 100% 100%;
     background-blend-mode: color-burn, color-burn, color-burn, hard-light;
-    background-size: contain;
 
     filter: sepia(1) contrast(6);
 
-    animation: firing 60s linear infinite;
+    animation: firing 10s linear infinite;
 }
 
 .fire_limits {
     position: absolute;
     z-index: 2;
     width: 100vw;
-    height: calc(100vw / var(--aspect-ratio));
+    height: 100vmax;
     bottom: 0;
 
     background-image: radial-gradient(
@@ -131,18 +130,18 @@ button {
 
     font-size: xx-large;
     font-family: monospace;
-    color: rgb(98, 48, 1);
-    background-color: #000000;
+    color: rgb(111, 73, 34);
+    background-color: #000000d7;
     border: none;
     cursor: pointer;
 }
 
 @keyframes firing {
-    from {
-        background-position: 512px 9216px, 1536px 0, 0 7168px, 0;
+    100% {
+        background-position: 25vmin -100vmin, -25vmin -100vmin, 0 -100vh, 0;
     }
-    to {
-        background-position: 512px 4216px, 512px 216px, 1024px 0, 0;
+    0% {
+        background-position: -25vmin 100vmin, 25vmin 100vmin, 0 100vh, 0;
     }
 }
 
