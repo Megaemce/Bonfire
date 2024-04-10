@@ -182,13 +182,13 @@ button {
 
 @keyframes flickeringBone {
     0% {
-        filter: brightness(1);
+        filter: brightness(0);
     }
     50% {
-        filter: brightness(7);
+        filter: brightness(2);
     }
     100% {
-        filter: brightness(1);
+        filter: brightness(0);
     }
 }
 @keyframes flickeringLights {
