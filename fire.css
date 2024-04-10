@@ -62,12 +62,12 @@ body {
 
     background-image: url(noiseSmall.svg),
         radial-gradient(
-            ellipse 50vmax 90vmax at 33% 65%,
+            ellipse 50vmax 90vmax at 30% 65%,
             #000000 30%,
             #ffffff 52%
         ),
         radial-gradient(
-            ellipse 50vmax 90vmax at 67% 65%,
+            ellipse 50vmax 90vmax at 70% 65%,
             #000000 30%,
             white 52%
         );
