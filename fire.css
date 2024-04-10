@@ -29,7 +29,7 @@ body {
 
     mix-blend-mode: exclusion;
 
-    animation: flickering 5s cubic-bezier(0.5, 0, 0.06, 1.43) infinite;
+    animation: flickeringBone 5s ease-in-out infinite;
 }
 
 .fire {
@@ -99,7 +99,7 @@ body {
     background-size: contain;
     background-blend-mode: color-burn;
 
-    filter: blur(10px) opacity(0.9);
+    animation: flickeringLights 5s ease-in-out infinite;
 }
 
 .bone_front {
@@ -137,25 +137,33 @@ button {
 }
 
 @keyframes firing {
-    100% {
-        background-position: 25vmin -100vmin, -25vmin -100vmin, 0 -100vh, 0;
-    }
-    0% {
+    from {
         background-position: -25vmin 100vmin, 25vmin 100vmin, 0 100vh, 0;
+    }
+    to {
+        background-position: 25vmin -100vmin, -25vmin -100vmin, 0 -100vh, 0;
     }
 }
 
-@keyframes flickering {
+@keyframes flickeringBone {
     0% {
         filter: brightness(1);
     }
-    15% {
-        filter: brightness(4);
+    50% {
+        filter: brightness(10);
     }
-    35% {
-        filter: brightness(7);
+    100% {
+        filter: brightness(1);
     }
-    80% {
-        filter: brightness(3);
+}
+@keyframes flickeringLights {
+    0% {
+        filter: blur(7px) opacity(0.91);
+    }
+    50% {
+        filter: blur(10px) opacity(0.95);
+    }
+    100% {
+        filter: blur(7px) opacity(0.91);
     }
 }
