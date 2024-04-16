@@ -103,8 +103,8 @@ body {
 
 /* fire main class */
 .fire.on {
-    background-image: url(noiseSmall.svg), url(noiseBig.svg),
-        url(noiseNormal.svg),
+    background-image: url(noiseSmall.svg), url(noiseNormal.svg),
+        url(noiseBig.svg),
         linear-gradient(180deg, black, #656565d1 50%, #ffb100);
     background-size: 50% 50%, 50% 50%, 50% 50%, 100% 100%;
     background-blend-mode: difference, difference, difference, darken;
@@ -286,18 +286,17 @@ button {
     }
 }
 
-/* handling noise animations: 
-    noiseSmall: from bottom-left to top-right, 
-    noiseNormal: from bottom-right to top-left, 
-    noiseBig: from down to up, 
-    colorGradient: none 
-*/
+/* handling noise animations */
 @keyframes firing {
     from {
-        background-position: -25vmin 100vmin, 25vmin 100vmin, 0 100vh, 0;
+        background-position: /* noiseSmall from bottom-left  */ -25vmin 100vmin,
+            /* noiseNormal  from bottom-right  */ 25vmin 100vmin,
+            /* noiseBig from down */ 0 100vh, /* color gradient no movement */ 0;
     }
     to {
-        background-position: 25vmin -100vmin, -25vmin -100vmin, 0 -100vh, 0;
+        background-position: /* noiseSmall to top-right */ 25vmin -100vmin,
+            /* noiseNormal to top-left */ -25vmin -100vmin,
+            /* noiseBig to up */ 0 -100vh, /* color gradient no movement */ 0;
     }
 }
 
