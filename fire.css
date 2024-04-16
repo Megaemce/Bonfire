@@ -3,12 +3,14 @@ body {
     padding: 0;
 }
 
+/* main container that keeps the scene */
 .container {
     position: relative;
     height: 100vh;
     width: 100vw;
 }
 
+/* keeping the background outisde the bonfire black */
 .background {
     position: absolute;
     z-index: -1;
@@ -17,6 +19,7 @@ body {
     background-color: black;
 }
 
+/* main fire class - slightly orengish background color makes the smoke visible */
 .bonfire {
     position: absolute;
     height: 100vmin;
@@ -26,6 +29,7 @@ body {
     background-color: rgba(114, 99, 90, 0.13);
 }
 
+/* bonfire image used in the background to create the flickering sensation */
 .bon_back {
     position: absolute;
     z-index: 0;
@@ -36,15 +40,56 @@ body {
     transform: translateX(-50%);
 
     background-image: url(bonfire.png);
-    background-position: 51% 100%;
-    background-repeat: no-repeat;
     background-size: contain;
 
     mix-blend-mode: exclusion;
 
-    animation: flickeringBone 4s ease-in-out infinite;
+    /* bouncing animation for image fire flickering */
+    animation: flickeringImg 5s
+        linear(
+            0 0%,
+            0 2.27%,
+            0.02 4.53%,
+            0.04 6.8%,
+            0.06 9.07%,
+            0.1 11.33%,
+            0.14 13.6%,
+            0.25 18.15%,
+            0.39 22.7%,
+            0.56 27.25%,
+            0.77 31.8%,
+            1 36.35%,
+            0.89 40.9%,
+            0.85 43.18%,
+            0.81 45.45%,
+            0.79 47.72%,
+            0.77 50%,
+            0.75 52.27%,
+            0.75 54.55%,
+            0.75 56.82%,
+            0.77 59.1%,
+            0.79 61.38%,
+            0.81 63.65%,
+            0.85 65.93%,
+            0.89 68.2%,
+            1 72.7%,
+            0.97 74.98%,
+            0.95 77.25%,
+            0.94 79.53%,
+            0.94 81.8%,
+            0.94 84.08%,
+            0.95 86.35%,
+            0.97 88.63%,
+            1 90.9%,
+            0.99 93.18%,
+            0.98 95.45%,
+            0.99 97.73%,
+            1 100%
+        )
+        infinite;
 }
 
+/* keeping separate class for the disabled fire */
 .fire {
     position: absolute;
     z-index: 1;
@@ -52,40 +97,51 @@ body {
     height: 100vmin;
     bottom: 0;
 
-    mix-blend-mode: hard-light; /* making sure that flickering is making the fire ligther */
+    /* making sure that flickering from bon_back makes effect on the fire */
+    mix-blend-mode: hard-light;
 }
 
+/* fire main class */
 .fire.on {
-    background-image: url(noiseSmall.svg), url(noise1.svg), url(noise.svg),
-        linear-gradient(180deg, #000000, #656565d1 50%, #ffb100);
+    background-image: url(noiseSmall.svg), url(noiseBig.svg),
+        url(noiseNormal.svg),
+        linear-gradient(180deg, black, #656565d1 50%, #ffb100);
     background-size: 50% 50%, 50% 50%, 50% 50%, 100% 100%;
     background-blend-mode: difference, difference, difference, darken;
 
     filter: sepia(1) contrast(4.5);
 
-    animation: firing 10s linear infinite;
+    animation: firing 15s linear infinite;
 }
 
-.smog_limits {
+/* makes the smoke on the edges more natural */
+.smoke_limits {
     position: absolute;
     z-index: 2;
     width: 100vmin;
     height: 100vmin;
     bottom: 0;
 
-    background-image: url(noiseSmall.svg),
-        radial-gradient(ellipse 50% 90% at 30% 65%, #000000 30%, #ffffff 52%),
-        radial-gradient(ellipse 50% 90% at 70% 65%, #000000 30%, white 52%);
+    /* create a black lungs-alike shape with everything else being white noise  */
+    background-image: /* base noise */ url(noiseSmall.svg),
+        /* left lung */
+            radial-gradient(ellipse 50% 90% at 30% 65%, black 30%, white 52%),
+        /* right lung */
+            radial-gradient(ellipse 50% 90% at 70% 65%, black 30%, white 52%);
+    /* decreasing the noise size can make the smoke more granular */
     background-size: 50vmin 50vmin, 100%, 100%;
     background-blend-mode: difference;
 
     filter: grayscale(1) contrast(1.5) invert(1);
 
+    /* overlay could do too, will make the smoke more visible */
     mix-blend-mode: multiply;
 
-    animation: smog 20s linear infinite;
+    /* making the smoke goes up */
+    animation: smoke 15s linear infinite;
 }
 
+/* limiting the fire and the smoke */
 .fire_limits {
     position: absolute;
     z-index: 3;
@@ -93,19 +149,31 @@ body {
     height: 100vmin;
     bottom: 0;
 
-    background-image: radial-gradient(
+    background-image: /* main fire's limit with place for a smoke */ radial-gradient(
             ellipse 25% 58% at 50% 62%,
             white 38%,
             black 52%
         ),
-        radial-gradient(ellipse 24% 24% at 50% 81%, #ffffff00 30%, black 52%),
-        radial-gradient(ellipse 69% 87% at 50% 77%, #ffffffa3 13%, black 95%);
+        /* extra shoulders around main fire base */
+            radial-gradient(
+                ellipse 24% 24% at 50% 81%,
+                #ffffff00 30%,
+                black 52%
+            ),
+        /* dimming the main fire's limit so the smoke can gradually turn into black */
+            radial-gradient(
+                ellipse 69% 87% at 50% 77%,
+                #ffffffa3 13%,
+                black 95%
+            );
     background-size: contain;
     background-blend-mode: overlay;
 
+    /* make sure that fire limits works with smoke limits */
     mix-blend-mode: multiply;
 }
 
+/* adding extra light to the fire and surroundings */
 .fire_lights {
     position: absolute;
     z-index: 4;
@@ -113,27 +181,69 @@ body {
     height: 100vmin;
     bottom: 0;
 
-    background-image: radial-gradient(
+    background-image: /* horizontal lights on the ground around base */ radial-gradient(
             ellipse 45% 14% at 50% 94%,
-            #08040454 12% /* center of fire light */,
-            #372b1da3 42% /* general light outside bon */,
+            #08040454 12% /* center of base should be black */,
+            #462501a3 42% /* radiance light outside base */,
             transparent 100% /* no effect outside */
         ),
-        /* horizontal lights on the ground around bon*/
+        /* vertical lights surrounding the fire and the smoke */
             radial-gradient(
                 ellipse 18% 42% at 50% 86%,
                 #ffb20082 0% /* center of fire light */,
-                #ffad0017 28% /* general light outside bon */,
+                #492d096e 28% /* radiance light outside fire */,
                 transparent 100% /* no effect outside */
-            )
-            /* vertical lights */;
-    /* mix-blend-mode: lighten; */
+            );
+
     background-size: contain;
     background-blend-mode: color-burn;
 
-    animation: flickeringLights 4s ease-in-out infinite;
+    /* bouncing animation of the flickering lights  */
+    animation: flickeringLights 5s
+        linear(
+            0 0%,
+            0 2.27%,
+            0.02 4.53%,
+            0.04 6.8%,
+            0.06 9.07%,
+            0.1 11.33%,
+            0.14 13.6%,
+            0.25 18.15%,
+            0.39 22.7%,
+            0.56 27.25%,
+            0.77 31.8%,
+            1 36.35%,
+            0.89 40.9%,
+            0.85 43.18%,
+            0.81 45.45%,
+            0.79 47.72%,
+            0.77 50%,
+            0.75 52.27%,
+            0.75 54.55%,
+            0.75 56.82%,
+            0.77 59.1%,
+            0.79 61.38%,
+            0.81 63.65%,
+            0.85 65.93%,
+            0.89 68.2%,
+            1 72.7%,
+            0.97 74.98%,
+            0.95 77.25%,
+            0.94 79.53%,
+            0.94 81.8%,
+            0.94 84.08%,
+            0.95 86.35%,
+            0.97 88.63%,
+            1 90.9%,
+            0.99 93.18%,
+            0.98 95.45%,
+            0.99 97.73%,
+            1 100%
+        )
+        infinite;
 }
 
+/* same bonfire as in bon_back but with different mix-blend-mode */
 .bon_front {
     position: absolute;
     z-index: 5;
@@ -144,13 +254,12 @@ body {
     transform: translateX(-50%);
 
     background-image: url(bonfire.png);
-    background-position: 51% 100%;
-    background-repeat: no-repeat;
     background-size: contain;
 
     mix-blend-mode: color-dodge;
 }
 
+/* start button */
 button {
     position: absolute;
     z-index: 6;
@@ -167,7 +276,8 @@ button {
     cursor: pointer;
 }
 
-@keyframes smog {
+/* smoke animation that goes up */
+@keyframes smoke {
     from {
         background-position: 0 100vmin, 0, 0;
     }
@@ -176,6 +286,12 @@ button {
     }
 }
 
+/* handling noise animations: 
+    noiseSmall: from bottom-left to top-right, 
+    noiseNormal: from bottom-right to top-left, 
+    noiseBig: from down to up, 
+    colorGradient: none 
+*/
 @keyframes firing {
     from {
         background-position: -25vmin 100vmin, 25vmin 100vmin, 0 100vh, 0;
@@ -185,25 +301,30 @@ button {
     }
 }
 
-@keyframes flickeringBone {
+/* bon_back flickering animation */
+@keyframes flickeringImg {
     0% {
         filter: brightness(0);
     }
     50% {
-        filter: brightness(3);
+        filter: brightness(1.5);
     }
     100% {
         filter: brightness(0);
     }
 }
+/* fire's light flickering animation. 
+    Should use the same timing as flickeringImg 
+    Blur is important as otherwise the gradient would be visible
+*/
 @keyframes flickeringLights {
     0% {
-        filter: blur(7px) opacity(0.91);
+        filter: blur(7px) opacity(0.6);
     }
     50% {
-        filter: blur(10px) opacity(0.99);
+        filter: blur(9px) opacity(0.6) brightness(1.3);
     }
     100% {
-        filter: blur(7px) opacity(0.91);
+        filter: blur(7px) opacity(0.6);
     }
 }
