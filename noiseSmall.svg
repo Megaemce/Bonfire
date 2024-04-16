@@ -3,7 +3,7 @@
 		<feTurbulence type="turbulance" width="256px" height="256px" result="t" 
 			seed="33225"
 			stitchTiles="stitch" 
-			numOctaves="5" 
+			numOctaves="4" 
 			baseFrequency="0.02" />
 	</filter>
 	<rect width="256px" height="256px" fill="white" filter="url(#noise)" />
