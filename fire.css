@@ -16,16 +16,18 @@ body {
     z-index: -1;
     height: 100%;
     width: 100%;
+
     background-color: black;
 }
 
-/* main fire class - slightly orengish background color makes the smoke visible */
+/* main fire class - slightly orangish background color makes the smoke visible */
 .bonfire {
     position: absolute;
     height: 100vmin;
     width: 100vmin;
     bottom: 0;
     left: calc(((100vw - 100vmin) / 2));
+
     background-color: rgb(92 47 21 / 31%);
 }
 
@@ -347,7 +349,7 @@ button.gitHubButton:hover {
 }
 /* fire's light flickering animation. 
     Should use the same timing as flickeringImg 
-    Blur is important as otherwise the gradient would be visible
+    Blur is important as otherwise the gradient transition would be visible
 */
 @keyframes flickeringLights {
     0% {
