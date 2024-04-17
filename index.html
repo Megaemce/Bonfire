@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Bonfire 🔥</title>
+        <meta name="description" content="CSS only realistic bonfire" />
         <link rel="stylesheet" type="text/css" href="fire.css" />
     </head>
     <body>
@@ -15,7 +16,17 @@
                 <div class="fire_lights"></div>
                 <div class="bon_front"></div>
             </div>
-            <button id="start" onclick="startSound()">START THE FIRE</button>
+            <button
+                title="Click to start the fire"
+                id="start"
+                class="startButton"
+                onclick="startSound()"
+            ></button>
+            <button
+                title="Source code on GitHub"
+                class="gitHubButton"
+                onclick="window.open('https://github.com/Megaemce/Bonfire', '_blank')"
+            ></button>
         </div>
 
         <audio id="fireSound" loop>

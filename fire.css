@@ -26,7 +26,7 @@ body {
     width: 100vmin;
     bottom: 0;
     left: calc(((100vw - 100vmin) / 2));
-    background-color: rgba(114, 99, 90, 0.13);
+    background-color: rgb(92 47 21 / 31%);
 }
 
 /* bonfire image used in the background to create the flickering sensation */
@@ -106,6 +106,7 @@ body {
     background-image: url(noiseSmall.svg), url(noiseNormal.svg),
         url(noiseBig.svg),
         linear-gradient(180deg, black, #656565d1 50%, #ffb100);
+
     background-size: 50% 50%, 50% 50%, 50% 50%, 100% 100%;
     background-blend-mode: difference, difference, difference, darken;
 
@@ -134,7 +135,6 @@ body {
 
     filter: grayscale(1) contrast(1.5) invert(1);
 
-    /* overlay could do too, will make the smoke more visible */
     mix-blend-mode: multiply;
 
     /* making the smoke goes up */
@@ -260,7 +260,7 @@ body {
 }
 
 /* start button */
-button {
+button.startButton {
     position: absolute;
     z-index: 6;
     width: 100%;
@@ -268,12 +268,45 @@ button {
     top: 0;
     left: 0;
 
-    font-size: xx-large;
-    font-family: monospace;
-    color: rgb(111, 73, 34);
+    background-image: url(startTheFire.svg);
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
     background-color: #000000f5;
+
+    border: none;
+    transition: filter 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+button.startButton:hover {
+    filter: contrast(1.75);
+}
+
+button.gitHubButton {
+    position: absolute;
+    z-index: 7;
+    width: 30px;
+    height: 30px;
+    margin: 30px;
+    top: 0;
+    left: 90%;
+
+    background-image: url(github.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #000000f5;
+
+    filter: opacity(0.25);
+    transition: filter 0.3s ease-in-out;
+
     border: none;
     cursor: pointer;
+}
+
+button.gitHubButton:hover {
+    filter: opacity(1);
 }
 
 /* smoke animation that goes up */
